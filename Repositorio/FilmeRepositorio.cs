@@ -74,7 +74,8 @@ namespace Repositorio
 
             DataTable dataTable = new DataTable();
             dataTable.Load(comando.ExecuteReader());
-            if(dataTable.Rows.Count ==1)
+            conexao.Close();
+            if (dataTable.Rows.Count ==1)
             {
                 DataRow linha = dataTable.Rows[0];
                 Filme filme = new Filme();
@@ -87,7 +88,6 @@ namespace Repositorio
                 filme.TemSequencia = Convert.ToBoolean(linha["tem_sequencia"]);
                 return filme;
             }
-            conexao.Close(); 
             return null;
 
         }
@@ -106,6 +106,7 @@ namespace Repositorio
             comando.Parameters.AddWithValue("@CURTIU", filme.Curtiu);
             comando.Parameters.AddWithValue("@DURACAO", filme.Duracao);
             comando.Parameters.AddWithValue("@AVALIACAO", filme.Avaliacao);
+
             comando.Parameters.AddWithValue("@TEM_SEQUENCIA", filme.TemSequencia);
 
             comando.ExecuteNonQuery();
