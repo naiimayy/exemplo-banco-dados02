@@ -17,28 +17,28 @@ namespace Repositorio
 
         public List<Filme> ObterTodos()
         {
-        
-        // Cria conexao com o bando de dados e abre a conexão.
+
+            // Cria conexao com o bando de dados e abre a conexão.
 
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = CadeiaConexao;
             conexao.Open();
-        
-        // Cria o comando para ser executado no banco de dados e diz para este comando qual a conexao que está aberta. 
+
+            // Cria o comando para ser executado no banco de dados e diz para este comando qual a conexao que está aberta. 
 
             SqlCommand comando = new SqlCommand();
             comando.Connection = conexao;
             comando.CommandText = "SELECT * FROM filmes";
-        
-        // Cria uma tabela em memória para poder obter os dados que são retornados do banco de dados executando o comando no banco de dados.
+
+            // Cria uma tabela em memória para poder obter os dados que são retornados do banco de dados executando o comando no banco de dados.
 
             DataTable tabela = new DataTable();
             tabela.Load(comando.ExecuteReader());
 
-        // Cria uma lista para adicionar os filmes do banco de dados
+            // Cria uma lista para adicionar os filmes do banco de dados
             List<Filme> filmes = new List<Filme>();
-        
-        // Percorre todos os registros lidos no banco de dados. 
+
+            // Percorre todos os registros lidos no banco de dados. 
             for (int i = 0; i < tabela.Rows.Count; i++)
             {
                 DataRow linha = tabela.Rows[i];
@@ -59,7 +59,7 @@ namespace Repositorio
             conexao.Close();
             // retorno a lista de filmes 
             return filmes;
-        }  
+        }
 
         public Filme ObterPeloId(int id)
         {
@@ -75,7 +75,7 @@ namespace Repositorio
             DataTable dataTable = new DataTable();
             dataTable.Load(comando.ExecuteReader());
             conexao.Close();
-            if (dataTable.Rows.Count ==1)
+            if (dataTable.Rows.Count == 1)
             {
                 DataRow linha = dataTable.Rows[0];
                 Filme filme = new Filme();
@@ -92,7 +92,7 @@ namespace Repositorio
 
         }
 
-        public void Inserir (Filme filme)
+        public void Inserir(Filme filme)
         {
             SqlConnection conexao = new SqlConnection();
             conexao.ConnectionString = CadeiaConexao;
