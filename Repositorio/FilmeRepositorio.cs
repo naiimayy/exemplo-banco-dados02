@@ -84,7 +84,7 @@ namespace Repositorio
                 filme.Categoria = linha["categoria"].ToString();
                 filme.Curtiu = Convert.ToBoolean(linha["curtiu"]);
                 filme.Duracao = Convert.ToDateTime(linha["duracao"]);
-                filme.Avaliacao = Convert.ToDecimal(linha["avalicao"]);
+                filme.Avaliacao = Convert.ToDecimal(linha["avaliacao"]);
                 filme.TemSequencia = Convert.ToBoolean(linha["tem_sequencia"]);
                 return filme;
             }
@@ -144,6 +144,7 @@ namespace Repositorio
                                     tem_sequencia = @TEM_SEQUENCIA
                                     WHERE id = @ID";
 
+            comando.Parameters.AddWithValue("@ID", filme.Id);
             comando.Parameters.AddWithValue("@NOME", filme.Nome);
             comando.Parameters.AddWithValue("@CATEGORIA", filme.Categoria);
             comando.Parameters.AddWithValue("@CURTIU", filme.Curtiu);

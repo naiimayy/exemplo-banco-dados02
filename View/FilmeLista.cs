@@ -58,5 +58,21 @@ namespace View
         {
             AtualizarTabela();
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+
+            FilmeRepositorio repositorio = new FilmeRepositorio();
+            Filme filme = repositorio.ObterPeloId(id);
+
+            FilmeEditar filmeEditar = new FilmeEditar(filme);
+            filmeEditar.ShowDialog();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
